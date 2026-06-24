@@ -10,7 +10,7 @@ let canvas = document.getElementById('gameCanvas');
 let ctx = canvas.getContext('2d');
 let score = 0;
 let level = 1;
-let gameRunning = true;
+let gameRunning = false;
 let gameSpeed = 5;
 
 // Pac-Man object
@@ -205,6 +205,13 @@ function draw() {
         ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE / 2 + 3, ghost.y * TILE_SIZE + TILE_SIZE / 2 - 2, 1.5, 0, Math.PI * 2);
         ctx.fill();
     });
+
+    // Draw status text
+    ctx.fillStyle = '#fff';
+    ctx.font = '16px Arial';
+    if (!gameRunning) {
+        ctx.fillText('Press SPACE to start', 120, 200);
+    }
 }
 
 function resetGame() {
@@ -216,6 +223,7 @@ function resetGame() {
         ghost.x = 8 + (index % 2);
         ghost.y = 8 + Math.floor(index / 2);
     });
+    gameRunning = false;
 }
 
 function gameLoop() {
@@ -224,5 +232,5 @@ function gameLoop() {
     setTimeout(gameLoop, 1000 / gameSpeed);
 }
 
-// Start the game
+// Start the game loop
 gameLoop();

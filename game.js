@@ -10,7 +10,7 @@ let canvas = document.getElementById('gameCanvas');
 let ctx = canvas.getContext('2d');
 let score = 0;
 let level = 1;
-let gameRunning = false;
+let gameRunning = false;  // ✅ Game starts paused
 let gameSpeed = 5;
 
 // Pac-Man object
